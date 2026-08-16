@@ -47,6 +47,7 @@ const createOceanAmbience = (audioCtx) => {
 
 const AmbientSound = () => {
   const [audible, setAudible] = useState(false);
+  const [showHint, setShowHint] = useState(true);
   const ctxRef = useRef(null);
   const nodesRef = useRef(null);
   const enabledRef = useRef(true);
@@ -79,6 +80,7 @@ const AmbientSound = () => {
     const unlock = () => {
       if (unlockedRef.current) return;
       unlockedRef.current = true;
+      setShowHint(false);
       const audioCtx = ensureAudio();
       if (audioCtx && enabledRef.current && heroVisibleRef.current) {
         rampTo(TARGET_VOLUME);
@@ -86,7 +88,11 @@ const AmbientSound = () => {
     };
     const events = ["pointerdown", "touchstart", "keydown"];
     events.forEach((evt) => window.addEventListener(evt, unlock, { once: true }));
-    return () => events.forEach((evt) => window.removeEventListener(evt, unlock));
+    const hintTimer = window.setTimeout(() => setShowHint(false), 6000);
+    return () => {
+      events.forEach((evt) => window.removeEventListener(evt, unlock));
+      window.clearTimeout(hintTimer);
+    };
   }, []);
 
   // Fade out once the hero scrolls out of view, fade back in on return.
@@ -113,6 +119,7 @@ const AmbientSound = () => {
   );
 
   const toggle = () => {
+    setShowHint(false);
     const next = !enabledRef.current;
     enabledRef.current = next;
     if (next) {
@@ -125,27 +132,37 @@ const AmbientSound = () => {
   };
 
   return (
-    <button
-      type="button"
-      onClick={toggle}
-      aria-pressed={audible}
-      aria-label={audible ? "Turn off ambient ocean sound" : "Turn on ambient ocean sound"}
-      className="animate-fade-up absolute top-20 left-4 sm:top-24 sm:left-6 md:top-28 md:left-10 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 backdrop-blur-md ring-1 ring-white/25 text-white shadow-soft hover:bg-white/20 transition-colors"
-      style={{ animationDelay: "420ms" }}
-    >
-      {audible ? (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" />
-          <path d="M16.5 8.5a5 5 0 010 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-          <path d="M19.3 6a9 9 0 010 12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" opacity="0.6" />
-        </svg>
-      ) : (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" />
-          <path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-        </svg>
+    <div className="animate-fade-up absolute top-20 left-4 sm:top-24 sm:left-6 md:top-28 md:left-10 z-20 flex items-center gap-2" style={{ animationDelay: "420ms" }}>
+      <button
+        type="button"
+        onClick={toggle}
+        aria-pressed={audible}
+        aria-label={audible ? "Turn off ambient ocean sound" : "Turn on ambient ocean sound"}
+        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10 backdrop-blur-md ring-1 ring-white/25 text-white shadow-soft hover:bg-white/20 transition-colors"
+      >
+        {audible ? (
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" />
+            <path d="M16.5 8.5a5 5 0 010 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+            <path d="M19.3 6a9 9 0 010 12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" opacity="0.6" />
+          </svg>
+        ) : (
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" />
+            <path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          </svg>
+        )}
+      </button>
+      {!audible && (
+        <span
+          className={`rounded-full bg-white/10 backdrop-blur-md ring-1 ring-white/25 px-3 py-1.5 text-xs font-medium text-white shadow-soft transition-opacity duration-500 ${
+            showHint ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
+        >
+          Tap for sound
+        </span>
       )}
-    </button>
+    </div>
   );
 };
 

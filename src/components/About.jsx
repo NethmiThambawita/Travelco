@@ -1,5 +1,5 @@
 import aboutImg from "../assets/images/college.jpeg";
-import accentImg from "../assets/images/elephants.jpeg";
+
 import Reveal from "./Reveal";
 
 const points = [
