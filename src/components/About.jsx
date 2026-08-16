@@ -68,6 +68,7 @@ const About = () => {
               </li>
             ))}
           </ul>
+
         </Reveal>
       </div>
     </section>

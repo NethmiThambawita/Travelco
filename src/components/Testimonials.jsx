@@ -39,13 +39,13 @@ const Stars = () => (
 
 const Testimonials = () => {
   return (
-    <section id="reviews" className="py-20 md:py-28 bg-ink">
+    <section id="reviews" className="bg-white py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <Reveal className="max-w-2xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ocean-400">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ocean-700">
             Traveller reviews
           </p>
-          <h2 className="mt-3 text-3xl md:text-4xl font-bold text-white">
+          <h2 className="mt-3 text-3xl md:text-4xl font-bold text-ink">
             What it's like to travel with us
           </h2>
         </Reveal>
@@ -56,10 +56,10 @@ const Testimonials = () => {
               key={r.name}
               as="figure"
               delay={i * 100}
-              className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-7"
+              className="rounded-2xl bg-white p-7 shadow-soft ring-1 ring-ink/10"
             >
               <Stars />
-              <blockquote className="mt-4 text-white/85 leading-relaxed text-sm">
+              <blockquote className="mt-4 text-sm leading-relaxed text-ink/75">
                 “{r.quote}”
               </blockquote>
               <figcaption className="mt-6 flex items-center gap-3">
@@ -72,8 +72,8 @@ const Testimonials = () => {
                   className="h-11 w-11 rounded-full object-cover"
                 />
                 <div>
-                  <p className="text-sm font-semibold text-white">{r.name}</p>
-                  <p className="text-xs text-white/60">{r.place}</p>
+                  <p className="text-sm font-semibold text-ink">{r.name}</p>
+                  <p className="text-xs text-ink/55">{r.place}</p>
                 </div>
               </figcaption>
             </Reveal>

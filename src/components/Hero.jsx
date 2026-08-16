@@ -1,6 +1,39 @@
+import { useEffect, useRef, useState } from "react";
 import heroImg from "../assets/images/hero-sigiriya.jpg";
+import heroVideo from "../assets/videos/hero-sri-lanka.mp4";
 
 const Hero = () => {
+  const videoRef = useRef(null);
+  const [videoReady, setVideoReady] = useState(false);
+  const [allowVideo, setAllowVideo] = useState(false);
+  const [now, setNow] = useState(() => new Date());
+
+  useEffect(() => {
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (!reduced) setAllowVideo(true);
+  }, []);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => setNow(new Date()), 1000);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  const sriLankaTime = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Asia/Colombo",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true,
+  }).format(now);
+
+  const sriLankaDate = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Asia/Colombo",
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(now);
+
   return (
     <section id="top" className="relative min-h-[92vh] flex items-end md:items-center overflow-hidden">
       <img
@@ -11,6 +44,22 @@ const Hero = () => {
         width="1920"
         height="1280"
       />
+      {allowVideo && (
+        <video
+          ref={videoRef}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
+            videoReady ? "opacity-100" : "opacity-0"
+          }`}
+          src={heroVideo}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-hidden="true"
+          onCanPlay={() => setVideoReady(true)}
+        />
+      )}
       <div
         className="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-ink/20"
         aria-hidden="true"
@@ -52,6 +101,24 @@ const Hero = () => {
           >
             Explore Tours
           </a>
+        </div>
+
+        <div
+          className="animate-fade-up mt-8 flex w-fit items-center gap-3 rounded-2xl bg-white/10 px-4 py-3 text-white shadow-soft ring-1 ring-white/25 backdrop-blur-md md:absolute md:bottom-10 md:right-10 md:mt-0"
+          style={{ animationDelay: "420ms" }}
+          aria-live="off"
+        >
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/15 text-ocean-100">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth="1.7" />
+              <path d="M12 7.5V12l3 2" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </div>
+          <div>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-ocean-100">Sri Lanka local time</p>
+            <p className="mt-0.5 text-lg font-bold leading-tight">{sriLankaTime}</p>
+            <p className="mt-0.5 text-[11px] text-white/70">{sriLankaDate} · UTC+5:30</p>
+          </div>
         </div>
 
         <dl

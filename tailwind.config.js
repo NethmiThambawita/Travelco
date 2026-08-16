@@ -23,6 +23,7 @@ export default {
       },
       fontFamily: {
         sans: ["Poppins", "system-ui", "sans-serif"],
+        serif: ["\"Playfair Display\"", "Georgia", "serif"],
       },
       boxShadow: {
         soft: "0 10px 30px -10px rgba(11, 39, 39, 0.15)",

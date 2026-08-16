@@ -65,7 +65,7 @@ const packages = [
 
 const Packages = () => {
   return (
-    <section id="tours" className="py-20 md:py-28 bg-spice-50/40">
+    <section id="tours" className="bg-white py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <Reveal className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ocean-700">
@@ -129,18 +129,6 @@ const Packages = () => {
           ))}
         </div>
 
-        <Reveal className="mt-10 grid sm:grid-cols-3 gap-6 rounded-2xl bg-ink text-white p-8">
-          {[
-            { title: "Airport Transfers", desc: "Meet & greet at BIA, direct to your first stop." },
-            { title: "Private Transportation", desc: "Air-conditioned vehicle and driver for the whole trip." },
-            { title: "Fully Custom Packages", desc: "Send us your dates — we'll route the rest." },
-          ].map((item) => (
-            <div key={item.title}>
-              <h3 className="font-semibold">{item.title}</h3>
-              <p className="mt-1 text-sm text-white/70">{item.desc}</p>
-            </div>
-          ))}
-        </Reveal>
       </div>
     </section>
   );

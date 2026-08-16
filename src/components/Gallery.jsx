@@ -3,9 +3,11 @@ import palmImg from "../assets/images/gallery-palm.jpg";
 import sunsetImg from "../assets/images/gallery-sunset.jpg";
 import ninearchImg from "../assets/images/gallery-ninearch.jpg";
 import gallestreetImg from "../assets/images/gallery-gallestreet.jpg";
+import beachSunsetImg from "../assets/images/gallery-beach-sunset.jpg";
 import Reveal from "./Reveal";
 
 const photos = [
+  { img: beachSunsetImg, alt: "Fishing boat silhouetted against a pink sunset, framed by palm fronds, on Sri Lanka's coast", w: 900, h: 1200 },
   { img: pidurangalaImg, alt: "View of Sigiriya Rock from Pidurangala, Sri Lanka", w: 800, h: 1067 },
   { img: ninearchImg, alt: "The Nine Arches railway bridge surrounded by jungle near Ella", w: 800, h: 533 },
   { img: palmImg, alt: "A single coconut palm leaning over the Indian Ocean on Sri Lanka's coast", w: 800, h: 1067 },
