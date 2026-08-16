@@ -65,15 +65,44 @@ const Hero = () => {
         aria-hidden="true"
       />
 
+      <div
+        className="animate-fade-up absolute top-20 right-4 sm:top-24 sm:right-6 md:top-28 md:right-10 z-20 flex items-center gap-3 rounded-2xl bg-white/10 backdrop-blur-md pl-3 pr-4 py-2.5 md:pl-3.5 md:pr-5 md:py-3 text-white shadow-soft ring-1 ring-white/25"
+        style={{ animationDelay: "420ms" }}
+        aria-live="off"
+      >
+        <div className="relative flex h-9 w-9 md:h-10 md:w-10 shrink-0 items-center justify-center rounded-full bg-white/15 text-ocean-100">
+          <span className="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-spice-400 opacity-75" />
+            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-spice-400 ring-2 ring-ink/50" />
+          </span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth="1.7" />
+            <path d="M12 7.5V12l3 2" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </div>
+        <div>
+          <p className="text-[9px] md:text-[10px] font-semibold uppercase tracking-[0.14em] text-ocean-100">
+            Sri Lanka time
+          </p>
+          <p className="text-sm md:text-lg font-bold leading-tight tabular-nums">{sriLankaTime}</p>
+          <p className="hidden sm:block mt-0.5 text-[10px] text-white/65">{sriLankaDate}</p>
+        </div>
+      </div>
+
       <div className="relative z-10 mx-auto max-w-7xl px-5 md:px-10 pb-16 pt-40 md:py-32 text-white">
         <p className="animate-fade-up inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-ocean-100 ring-1 ring-white/20">
           Private Sri Lanka Journeys
         </p>
         <h1
-          className="animate-fade-up mt-6 max-w-2xl text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.08]"
+          className="animate-fade-up mt-4 max-w-2xl leading-[1.05]"
           style={{ animationDelay: "120ms" }}
         >
-          Discover the island that gave the world serendipity.
+          <span className="block font-script text-3xl sm:text-4xl md:text-5xl font-medium text-ocean-100">
+            Discover the island that gave the world
+          </span>
+          <span className="mt-1 block text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight">
+            Serendipity.
+          </span>
         </h1>
         <p
           className="animate-fade-up mt-6 max-w-xl text-base md:text-lg text-white/85"
@@ -101,24 +130,6 @@ const Hero = () => {
           >
             Explore Tours
           </a>
-        </div>
-
-        <div
-          className="animate-fade-up mt-8 flex w-fit items-center gap-3 rounded-2xl bg-white/10 px-4 py-3 text-white shadow-soft ring-1 ring-white/25 backdrop-blur-md md:absolute md:bottom-10 md:right-10 md:mt-0"
-          style={{ animationDelay: "420ms" }}
-          aria-live="off"
-        >
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/15 text-ocean-100">
-            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth="1.7" />
-              <path d="M12 7.5V12l3 2" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
-          <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-ocean-100">Sri Lanka local time</p>
-            <p className="mt-0.5 text-lg font-bold leading-tight">{sriLankaTime}</p>
-            <p className="mt-0.5 text-[11px] text-white/70">{sriLankaDate} · UTC+5:30</p>
-          </div>
         </div>
 
         <dl

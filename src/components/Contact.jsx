@@ -42,7 +42,7 @@ const Contact = () => {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ocean-700">
             Plan your trip
           </p>
-          <h2 className="mt-3 text-3xl md:text-4xl font-bold text-ink">
+          <h2 className="mt-3 font-serif text-3xl md:text-4xl font-semibold text-ink">
             Tell us your dates, we'll build the route
           </h2>
           <p className="mt-4 text-ink/70">

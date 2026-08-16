@@ -1,4 +1,5 @@
-import aboutImg from "../assets/images/about-wawatenna.jpg";
+import aboutImg from "../assets/images/college.jpeg";
+import accentImg from "../assets/images/elephants.jpeg";
 import Reveal from "./Reveal";
 
 const points = [
@@ -11,20 +12,28 @@ const About = () => {
   return (
     <section id="about" className="py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-5 md:px-10 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center overflow-visible">
-        <Reveal className="relative max-w-full">
-          <img
-            src={aboutImg}
-            alt="A lone pine and viewpoint bench overlooking the Wawatenna Lakeplain in Sri Lanka's hill country"
-            className="w-full h-auto rounded-3xl shadow-soft"
-            loading="lazy"
-            width="1000"
-            height="1203"
-          />
-          <div className="absolute -bottom-8 right-4 bg-white rounded-2xl shadow-soft px-6 py-5 max-w-[220px]">
-            <p className="text-3xl font-bold text-ink">15</p>
-            <p className="text-sm text-ink/60 mt-1">
-              Districts we personally route and revisit every season
-            </p>
+        <Reveal className="flex justify-center lg:justify-start">
+          <div className="relative w-full max-w-[260px] sm:max-w-[300px] lg:max-w-[320px] mb-10 sm:mb-0">
+            <img
+              src={aboutImg}
+              alt="A photo collage celebrating Sri Lanka — elephants, Sigiriya, Ceylon tea and island culture"
+              className="h-auto w-full rounded-3xl shadow-soft"
+              loading="lazy"
+              width="720"
+              height="1280"
+            />
+            <img
+              src={accentImg}
+              alt="Elephants wading through a lily-covered lake in Sri Lanka"
+              loading="lazy"
+              className="hidden sm:block absolute -bottom-10 -left-10 h-32 w-28 md:h-36 md:w-32 object-cover rounded-2xl border-4 border-white shadow-soft"
+            />
+            <div className="absolute -bottom-8 right-4 bg-white/40 backdrop-blur-xl ring-1 ring-white/60 rounded-2xl shadow-soft px-6 py-5 max-w-[220px]">
+              <p className="font-serif text-3xl font-semibold text-ink">15</p>
+              <p className="text-sm text-ink/70 mt-1">
+                Districts we personally route and revisit every season
+              </p>
+            </div>
           </div>
         </Reveal>
 
@@ -32,7 +41,7 @@ const About = () => {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ocean-700">
             Who we are
           </p>
-          <h2 className="mt-3 text-3xl md:text-4xl font-bold text-ink">
+          <h2 className="mt-3 font-serif text-3xl md:text-4xl font-semibold text-ink">
             A local team that plans the way we'd travel ourselves
           </h2>
           <p className="mt-5 text-ink/70 leading-relaxed">

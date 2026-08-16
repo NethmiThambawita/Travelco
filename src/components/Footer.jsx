@@ -1,12 +1,20 @@
-import { useState } from "react";
 import Logo from "./Logo";
+import footerVideo from "../assets/videos/gallery-colombo.mp4";
 
 const nav = [
+  { href: "#top", label: "Home" },
   { href: "#about", label: "About" },
   { href: "#tours", label: "Tours" },
   { href: "#gallery", label: "Gallery" },
   { href: "#reviews", label: "Reviews" },
   { href: "#contact", label: "Contact" },
+];
+
+const packages = [
+  { href: "#tours", label: "Ancient Cities & Sigiriya" },
+  { href: "#tours", label: "Yala Wildlife Safari" },
+  { href: "#tours", label: "Hill Country by Rail" },
+  { href: "#tours", label: "South Coast Beach Escape" },
 ];
 
 const social = [
@@ -43,154 +51,157 @@ const social = [
 ];
 
 const Footer = () => {
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
-    setSubscribed(true);
-    setEmail("");
-  };
-
   return (
     <footer className="bg-ink text-white">
-      <div className="border-b border-white/10">
-        <div className="mx-auto max-w-7xl px-5 md:px-10 py-12 md:py-14 flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <h2 className="font-serif italic text-2xl sm:text-3xl md:text-4xl max-w-lg">
-            Sign up for Sri Lanka travel inspiration
-          </h2>
-
-          {subscribed ? (
-            <p className="text-sm text-ocean-100">
-              You're on the list — thank you.
-            </p>
-          ) : (
-            <form
-              onSubmit={handleSubscribe}
-              className="flex w-full md:w-auto md:min-w-[360px] items-center gap-3 border-b border-white/30 pb-2 focus-within:border-white/70 transition-colors"
-            >
-              <label htmlFor="newsletter-email" className="sr-only">
-                Email address
-              </label>
-              <input
-                id="newsletter-email"
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Your email address"
-                className="flex-1 bg-transparent text-sm placeholder:text-white/45 outline-none"
-              />
-              <button
-                type="submit"
-                aria-label="Subscribe"
-                className="h-9 w-9 shrink-0 rounded-full border border-white/40 flex items-center justify-center hover:bg-white hover:text-ink transition-colors"
-              >
-                <svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                  <path
-                    d="M4 10h12M11 5l5 5-5 5"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
-            </form>
-          )}
-        </div>
-      </div>
-
-      <div className="mx-auto max-w-7xl px-5 md:px-10 py-14 md:py-16 grid md:grid-cols-3 gap-12">
-        <div>
-          <Logo variant="light" />
-          <p className="mt-5 text-sm leading-relaxed max-w-xs text-white/60">
-            Private, hand-built Sri Lanka itineraries — round tours, day
-            trips, safaris and transfers, planned by a local team based
-            in Kandy.
-          </p>
-        </div>
-
-        <div>
-          <h3 className="text-xs font-semibold uppercase tracking-widest text-white/45">
-            Explore
-          </h3>
-          <ul className="mt-4 space-y-2.5 text-sm text-white/75">
-            {nav.map((item) => (
-              <li key={item.href}>
-                <a href={item.href} className="hover:text-white transition-colors">
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="text-xs font-semibold uppercase tracking-widest text-white/45">
-            Contact
-          </h3>
-          <ul className="mt-4 space-y-2.5 text-sm text-white/75">
-            <li>hello@serendibtrails.com</li>
-            <li>+94 81 234 5678</li>
-            <li>24 Temple View Lane, Kandy, Sri Lanka</li>
-          </ul>
-
-          <h3 className="mt-8 text-xs font-semibold uppercase tracking-widest text-white/45">
-            Connect
-          </h3>
-          <div className="mt-4 flex gap-3">
-            {social.map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={s.label}
-                className="h-10 w-10 rounded-full border border-white/25 flex items-center justify-center text-white/80 hover:bg-white hover:text-ink hover:border-white transition-colors"
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-                  {s.icon}
-                </svg>
-              </a>
-            ))}
+      <div className="relative h-[52vh] min-h-[360px] w-full overflow-hidden">
+        <video
+          src={footerVideo}
+          className="absolute inset-0 h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/35 to-black/10" aria-hidden="true" />
+        <div className="relative z-10 mx-auto flex h-full max-w-7xl items-end px-5 pb-12 md:px-10 md:pb-16">
+          <div className="max-w-2xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ocean-100">Your island story starts here</p>
+            <h2 className="mt-3 font-serif text-4xl font-semibold leading-tight md:text-6xl">Ready to see Sri Lanka for yourself?</h2>
+            <a href="#contact" className="mt-6 inline-flex items-center gap-2 border-b border-white/70 pb-1 text-sm font-semibold hover:border-white">Start planning <span aria-hidden="true">→</span></a>
           </div>
         </div>
       </div>
 
-      <div className="border-t border-white/10">
-        <div className="mx-auto max-w-7xl px-5 md:px-10 py-7">
-          <p className="max-w-2xl text-xs text-white/45 leading-relaxed">
-            Serendib Trails is a private, independently operated Sri Lanka
-            trip designer. Every itinerary is custom-quoted and confirmed
-            directly with our Kandy office before booking — trusted by
-            4,300+ travellers with a 4.9/5 average rating.
-          </p>
-        </div>
-      </div>
+      <div className="relative overflow-hidden">
+        <svg
+          className="pointer-events-none absolute -right-16 top-0 h-[640px] w-auto text-white/[0.06] md:-right-6 lg:right-10"
+          viewBox="0 0 200 340"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M78 4
+              C100 2 120 10 128 24
+              C148 40 168 65 165 95
+              C178 120 176 150 168 165
+              C176 185 168 210 150 232
+              C158 255 145 278 122 298
+              C112 312 100 312 92 300
+              C75 282 68 258 74 235
+              C55 225 45 205 52 182
+              C36 172 30 150 42 132
+              C28 115 30 90 46 75
+              C36 60 38 40 55 26
+              C62 14 70 6 78 4 Z"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
+        </svg>
 
-      <div className="border-t border-white/10">
-        <div className="mx-auto max-w-7xl px-5 md:px-10 py-5 flex items-center justify-between gap-4 text-xs text-white/45">
-          <p>
-            © {new Date().getFullYear()} Serendib Trails. Fictional agency
-            created for a design &amp; development assessment.
-          </p>
-          <a
-            href="#top"
-            aria-label="Back to top"
-            className="h-9 w-9 shrink-0 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors"
-          >
-            <svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-              <path
-                d="M10 15V5M5 9l5-5 5 5"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </a>
+        <div className="relative mx-auto max-w-7xl px-5 md:px-10 py-14 md:py-16 grid md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+          <div className="lg:col-span-1">
+            <Logo variant="light" />
+            <p className="mt-5 text-sm leading-relaxed max-w-xs text-white/60">
+              Private, hand-built Sri Lanka itineraries — round tours, day
+              trips, safaris and transfers, planned by a local team based
+              in Kandy.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-serif text-lg font-semibold uppercase tracking-wide text-white">
+              Quick Links
+            </h3>
+            <ul className="mt-5 space-y-3 text-base text-white/75">
+              {nav.map((item) => (
+                <li key={item.label}>
+                  <a href={item.href} className="font-medium hover:text-white transition-colors">
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-serif text-lg font-semibold uppercase tracking-wide text-white">
+              Packages
+            </h3>
+            <ul className="mt-5 space-y-3 text-base text-white/75">
+              {packages.map((item) => (
+                <li key={item.label}>
+                  <a href={item.href} className="font-medium hover:text-white transition-colors">
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-serif text-lg font-semibold uppercase tracking-wide text-white">
+              Contact
+            </h3>
+            <ul className="mt-5 space-y-3 text-base font-medium text-white/75">
+              <li>hello@serendibtrails.com</li>
+              <li>+94 81 234 5678</li>
+              <li>24 Temple View Lane, Kandy, Sri Lanka</li>
+            </ul>
+
+            <div className="mt-6 flex gap-3">
+              {social.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={s.label}
+                  className="h-10 w-10 rounded-lg bg-ocean-700 flex items-center justify-center text-white hover:bg-ocean-600 transition-colors"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                    {s.icon}
+                  </svg>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="relative border-t border-white/10">
+          <div className="mx-auto max-w-7xl px-5 md:px-10 py-7">
+            <p className="max-w-2xl text-xs text-white/45 leading-relaxed">
+              Serendib Trails is a private, independently operated Sri Lanka
+              trip designer. Every itinerary is custom-quoted and confirmed
+              directly with our Kandy office before booking — trusted by
+              4,300+ travellers with a 4.9/5 average rating.
+            </p>
+          </div>
+        </div>
+
+        <div className="relative border-t border-white/10">
+          <div className="mx-auto max-w-7xl px-5 md:px-10 py-5 flex items-center justify-between gap-4 text-xs text-white/45">
+            <p>
+              © {new Date().getFullYear()} Serendib Trails. All rights reserved.
+              <span className="hidden sm:inline"> · Crafted with care in Kandy, Sri Lanka.</span>
+            </p>
+            <a
+              href="#top"
+              aria-label="Back to top"
+              className="h-9 w-9 shrink-0 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors"
+            >
+              <svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path
+                  d="M10 15V5M5 9l5-5 5 5"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </footer>

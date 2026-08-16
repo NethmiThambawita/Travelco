@@ -39,19 +39,22 @@ npm run preview  # serve the production build locally
   Images are compressed and served at sized widths to keep the page light.
 - **Sections**: header/nav, hero, about, 6 tour/day-tour packages + a
   services strip (airport transfers / private transport / custom
-  itineraries), a "why choose us" grid, a photo gallery, 3 traveller
-  testimonials, and a booking/enquiry form — matching the assessment's
-  required homepage sections.
+  itineraries), a "why choose us" grid, a photo-and-video gallery, 3
+  traveller testimonials, and a booking/enquiry form — matching the
+  assessment's required homepage sections.
 - **Motion**: a looping aerial video (verified Sri Lanka footage, Pexels
   License) plays behind the hero text with a Ken Burns-zoomed photo as an
   instant-paint fallback underneath, plus scroll-triggered fade-up reveals
   across every section. Everything respects `prefers-reduced-motion` — the
   video isn't even mounted, and reveals just render fully visible.
-- **Showcase section**: a portrait video moment (user-supplied Coconut Tree
-  Hill, Mirissa footage) sits between the tour packages and "why choose us",
-  framed in a contained card rather than stretched full-width — its source
-  is a phone-shot vertical clip, so keeping it at native-ish size avoids the
-  soft/blurry look a large upscale would produce.
+- **Live Sri Lanka clock** in the hero (`Intl.DateTimeFormat` on
+  `Asia/Colombo`, ticking every second) — a small, honest touch for
+  travellers checking what time it is on the ground; marked `aria-live="off"`
+  so screen readers aren't interrupted every second.
+- **Gallery**: a uniform photo grid with two looping video tiles mixed in
+  (verified Colombo footage — an aerial skyline shot and a night tuk-tuk
+  ride, both Pexels License), marked with a small play-icon badge so it's
+  clear which tiles are motion.
 - **Footer**: restructured after reddottours.com's layout — a serif
   newsletter strip, a 3-column body (logo / explore / contact+social with
   circular icon buttons), a trust blurb, and a bottom bar with copyright +
@@ -74,7 +77,9 @@ npm run preview  # serve the production build locally
   step for production use.
 - **Phone/email/address** in the footer and contact section are placeholder
   fictional details for this fictional business.
-- **Hero video weight**: `src/assets/videos/hero-sri-lanka.mp4` is ~6MB
-  (960×540, self-hosted so it doesn't depend on Pexels staying up). Fine on
-  broadband; a production build would add a smaller/adaptive source for slow
-  connections.
+- **Video weight**: the hero video plus the two gallery video tiles total
+  ~15MB, all self-hosted (`src/assets/videos/`) so the page doesn't depend
+  on Pexels staying up. Every video is `loading`-deferred until its section
+  scrolls into view except the hero, so nothing loads until it's needed —
+  fine on broadband, but a production build would want smaller/adaptive
+  sources for slow connections.

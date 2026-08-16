@@ -45,7 +45,7 @@ const Testimonials = () => {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ocean-700">
             Traveller reviews
           </p>
-          <h2 className="mt-3 text-3xl md:text-4xl font-bold text-ink">
+          <h2 className="mt-3 font-serif text-3xl md:text-4xl font-semibold text-ink">
             What it's like to travel with us
           </h2>
         </Reveal>

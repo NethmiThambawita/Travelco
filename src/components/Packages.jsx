@@ -5,12 +5,13 @@ import trainImg from "../assets/images/tour-train.jpg";
 import beachImg from "../assets/images/tour-beach.jpg";
 import galleImg from "../assets/images/tour-heritage.jpg";
 import kandyImg from "../assets/images/gallery-kandy.jpg";
+import ServiceRequestCard from "./ServiceRequestCard";
 
 const packages = [
   {
     img: sigiriyaImg,
     alt: "Sigiriya Rock Fortress rising above the jungle canopy",
-    tag: "Cultural",
+    tag: "Round tour",
     title: "Ancient Cities & Sigiriya",
     days: "4 days",
     from: "US$420",
@@ -19,7 +20,7 @@ const packages = [
   {
     img: safariImg,
     alt: "A mother and calf elephant crossing a dirt track in a Sri Lankan national park",
-    tag: "Safari",
+    tag: "Wildlife safari",
     title: "Yala Wildlife Safari",
     days: "2 days",
     from: "US$260",
@@ -28,7 +29,7 @@ const packages = [
   {
     img: trainImg,
     alt: "A blue Sri Lankan train crossing the Nine Arches Bridge near Ella",
-    tag: "Scenic rail",
+    tag: "Round tour",
     title: "Hill Country by Rail",
     days: "3 days",
     from: "US$310",
@@ -37,7 +38,7 @@ const packages = [
   {
     img: beachImg,
     alt: "Aerial view of a palm-lined bay on Sri Lanka's south coast",
-    tag: "Beach",
+    tag: "Round tour",
     title: "South Coast Beach Escape",
     days: "5 days",
     from: "US$390",
@@ -63,6 +64,60 @@ const packages = [
   },
 ];
 
+const services = [
+  {
+    title: "Airport Transfers",
+    desc: "Meet & greet at Bandaranaike International, straight to your first stop.",
+    dateLabel: "Pickup date",
+    fieldLabel: "Flight number (optional)",
+    fieldPlaceholder: "e.g. UL 504",
+    icon: (
+      <path
+        d="M2 16l20-7-2 8-6 2-2 5-3-6-7-2z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+    ),
+  },
+  {
+    title: "Private Transportation",
+    desc: "Your own air-conditioned vehicle and driver-guide for the whole trip.",
+    dateLabel: "Start date",
+    fieldLabel: "How many days?",
+    fieldPlaceholder: "e.g. 7 days",
+    icon: (
+      <path
+        d="M4 16V9a2 2 0 012-2h9l3 4h1a2 2 0 012 2v3a1 1 0 01-1 1h-1a3 3 0 11-6 0H10a3 3 0 11-6 0H3a1 1 0 01-1-1v-1z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+    ),
+  },
+  {
+    title: "Custom Tour Packages",
+    desc: "Send us your dates and interests — we'll design the itinerary around them.",
+    dateLabel: "Preferred start date",
+    fieldLabel: "What are you interested in?",
+    fieldPlaceholder: "e.g. wildlife, hill country, beaches",
+    icon: (
+      <path
+        d="M12 3v18M3 12h18M7 7l10 10M17 7L7 17"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+    ),
+  },
+];
+
 const Packages = () => {
   return (
     <section id="tours" className="bg-white py-20 md:py-28">
@@ -71,7 +126,7 @@ const Packages = () => {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ocean-700">
             Tours &amp; packages
           </p>
-          <h2 className="mt-3 text-3xl md:text-4xl font-bold text-ink">
+          <h2 className="mt-3 font-serif text-3xl md:text-4xl font-semibold text-ink">
             Round tours, day trips and safaris — built around you
           </h2>
           <p className="mt-4 text-ink/70">
@@ -129,6 +184,16 @@ const Packages = () => {
           ))}
         </div>
 
+        <Reveal className="mt-16" delay={90}>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ocean-700">
+            Also included
+          </p>
+          <div className="mt-6 grid sm:grid-cols-3 gap-6">
+            {services.map((s) => (
+              <ServiceRequestCard key={s.title} service={s} />
+            ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   );
