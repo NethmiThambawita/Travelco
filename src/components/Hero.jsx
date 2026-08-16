@@ -1,4 +1,52 @@
-return (
+import { useEffect, useRef, useState } from "react";
+import heroImg from "../assets/images/hero-sigiriya.jpg";
+import heroVideo from "../assets/videos/hero-sri-lanka.mp4";
+import AmbientSound from "./AmbientSound";
+
+const Hero = () => {
+  const videoRef = useRef(null);
+  const [videoReady, setVideoReady] = useState(false);
+  const [allowVideo, setAllowVideo] = useState(false);
+  const [now, setNow] = useState(() => new Date());
+
+  useEffect(() => {
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (!reduced) setAllowVideo(true);
+  }, []);
+
+  useEffect(() => {
+    if (!allowVideo || !videoRef.current) return;
+    const video = videoRef.current;
+    video.muted = true;
+    video.defaultMuted = true;
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {});
+    }
+  }, [allowVideo]);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => setNow(new Date()), 1000);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  const sriLankaTime = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Asia/Colombo",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true,
+  }).format(now);
+
+  const sriLankaDate = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Asia/Colombo",
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(now);
+
+  return (
   <section
     id="top"
     className="relative min-h-[92vh] flex items-center justify-center overflow-hidden"
@@ -94,12 +142,12 @@ return (
       </p>
 
       {/* Heading */}
-      <h1
+      <h2
         className="animate-fade-up mt-6 max-w-5xl font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.05]"
         style={{ animationDelay: "120ms" }}
       >
         Discover the island that gave the world serendipity.
-      </h1>
+      </h2>
 
       {/* Mobile Description */}
       <p
@@ -182,4 +230,7 @@ return (
       </dl>
     </div>
   </section>
-);
+  );
+};
+
+export default Hero;

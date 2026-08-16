@@ -1,6 +1,5 @@
 import wawatennaImg from "../assets/images/about-wawatenna.jpg";
 import pidurangalaImg from "../assets/images/gallery-pidurangala.jpg";
-import elephantsImg from "../assets/images/elephants.jpeg";
 import fortImg from "../assets/images/fort.jpeg";
 import templesImg from "../assets/images/temples.jpeg";
 import colomboImg from "../assets/images/gallery-colombo.jpg";
@@ -12,7 +11,6 @@ import Reveal from "./Reveal";
 const destinations = [
   { img: wawatennaImg, tag: "Hill Country", title: "Wawatenna Lakeplain", desc: "A quiet viewpoint over tea country, best caught at first light." },
   { img: pidurangalaImg, tag: "Ancient City", title: "Sigiriya Rock", desc: "Climb Pidurangala at dawn for the classic view across to the fortress." },
-  { img: elephantsImg, tag: "Wildlife", title: "Wild Elephants", desc: "Herds wading through lily-covered lakes in the dry-zone parks." },
   { img: fortImg, tag: "Heritage", title: "Galle Fort", desc: "Colonial ramparts, string lights and quiet cobbled lanes by the sea." },
   { img: templesImg, tag: "Sacred Sites", title: "Anuradhapura", desc: "Ancient stupas glowing gold against the sunset sky." },
   { img: colomboImg, tag: "City", title: "Colombo", desc: "Skyline views and street food between flights or transfers." },
@@ -22,7 +20,7 @@ const destinations = [
 ];
 
 const DestinationCard = ({ d }) => (
-  <div className="relative w-[240px] sm:w-[280px] aspect-[3/4] shrink-0 overflow-hidden rounded-2xl shadow-soft">
+  <div className="relative w-[240px] sm:w-[280px] aspect-[3/4.5] shrink-0 overflow-hidden rounded-2xl shadow-soft">
     {d.video ? (
       <video
         src={d.video}
