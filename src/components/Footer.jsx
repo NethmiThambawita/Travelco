@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import Logo from "./Logo";
 import footerVideo from "../assets/videos/gallery-colombo.mp4";
 import collageImg from "../assets/images/college.jpeg";
@@ -52,10 +53,24 @@ const social = [
 ];
 
 const Footer = () => {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = true;
+    video.defaultMuted = true;
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {});
+    }
+  }, []);
+
   return (
     <footer className="bg-ink text-white">
       <div className="relative h-[52vh] min-h-[360px] w-full overflow-hidden">
         <video
+          ref={videoRef}
           src={footerVideo}
           className="absolute inset-0 h-full w-full object-cover"
           autoPlay
