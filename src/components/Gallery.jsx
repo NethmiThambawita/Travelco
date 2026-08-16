@@ -23,13 +23,27 @@ const destinations = [
 
 const DestinationCard = ({ d }) => (
   <div className="relative w-[240px] sm:w-[280px] aspect-[3/4] shrink-0 overflow-hidden rounded-2xl shadow-soft">
-    <img
-      src={d.img}
-      alt={d.title}
-      loading="lazy"
-      className="h-full w-full object-cover"
-      draggable="false"
-    />
+    {d.video ? (
+      <video
+        src={d.video}
+        poster={d.img}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
+        className="h-full w-full object-cover"
+      />
+    ) : (
+      <img
+        src={d.img}
+        alt={d.title}
+        loading="lazy"
+        className="h-full w-full object-cover"
+        draggable="false"
+      />
+    )}
     <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/25 to-transparent" aria-hidden="true" />
     <span className="absolute top-4 left-4 rounded-full bg-white/90 backdrop-blur px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-ink">
       {d.tag}

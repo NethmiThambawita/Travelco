@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import heroImg from "../assets/images/hero-sigiriya.jpg";
 import heroVideo from "../assets/videos/hero-sri-lanka.mp4";
+import AmbientSound from "./AmbientSound";
 
 const Hero = () => {
   const videoRef = useRef(null);
@@ -65,6 +66,8 @@ const Hero = () => {
         aria-hidden="true"
       />
 
+      <AmbientSound />
+
       <div
         className="animate-fade-up absolute top-20 right-4 sm:top-24 sm:right-6 md:top-28 md:right-10 z-20 flex items-center gap-3 rounded-2xl bg-white/10 backdrop-blur-md pl-3 pr-4 py-2.5 md:pl-3.5 md:pr-5 md:py-3 text-white shadow-soft ring-1 ring-white/25"
         style={{ animationDelay: "420ms" }}
@@ -94,15 +97,10 @@ const Hero = () => {
           Private Sri Lanka Journeys
         </p>
         <h1
-          className="animate-fade-up mt-4 max-w-2xl leading-[1.05]"
+          className="animate-fade-up mt-6 max-w-2xl font-serif text-4xl sm:text-5xl md:text-6xl font-semibold leading-[1.08]"
           style={{ animationDelay: "120ms" }}
         >
-          <span className="block font-script text-3xl sm:text-4xl md:text-5xl font-medium text-ocean-100">
-            Discover the island that gave the world
-          </span>
-          <span className="mt-1 block text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight">
-            Serendipity.
-          </span>
+          Discover the island that gave the world serendipity.
         </h1>
         <p
           className="animate-fade-up mt-6 max-w-xl text-base md:text-lg text-white/85"
