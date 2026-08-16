@@ -15,6 +15,17 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
+    if (!allowVideo || !videoRef.current) return;
+    const video = videoRef.current;
+    video.muted = true;
+    video.defaultMuted = true;
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {});
+    }
+  }, [allowVideo]);
+
+  useEffect(() => {
     const timer = window.setInterval(() => setNow(new Date()), 1000);
     return () => window.clearInterval(timer);
   }, []);
