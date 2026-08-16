@@ -1,5 +1,6 @@
 import Logo from "./Logo";
 import footerVideo from "../assets/videos/gallery-colombo.mp4";
+import collageImg from "../assets/images/college.jpeg";
 
 const nav = [
   { href: "#top", label: "Home" },
@@ -75,6 +76,11 @@ const Footer = () => {
       </div>
 
       <div className="relative overflow-hidden">
+        <div className="absolute -inset-10" aria-hidden="true">
+          <img src={collageImg} alt="" className="h-full w-full object-cover object-top blur-md opacity-40 scale-105" />
+        </div>
+        <div className="absolute inset-0 bg-ink/70" aria-hidden="true" />
+
         <svg
           className="pointer-events-none absolute -right-16 top-0 h-[640px] w-auto text-white/[0.06] md:-right-6 lg:right-10"
           viewBox="0 0 200 340"

@@ -54,6 +54,20 @@ const WhyChooseUs = () => {
           <h2 className="mt-3 font-serif text-3xl md:text-4xl font-semibold text-ink">
             The difference is in who plans your trip
           </h2>
+          <p className="mt-4 text-ink/70 leading-relaxed">
+            Every detail — routes, guides, pacing, pricing — is handled by
+            people who live here, not a call centre reading off a script.
+            That's the whole difference.
+          </p>
+          <a
+            href="#contact"
+            className="mt-6 inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-semibold text-white shadow-soft hover:bg-ocean-700 transition-colors"
+          >
+            Read more
+            <svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </a>
         </Reveal>
 
         <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-7">

@@ -103,7 +103,7 @@ const Hero = () => {
           Discover the island that gave the world serendipity.
         </h1>
         <p
-          className="animate-fade-up mt-6 max-w-xl text-base md:text-lg text-white/85"
+          className="animate-fade-up mt-6 max-w-xl text-base md:text-lg text-white/85 sm:hidden"
           style={{ animationDelay: "240ms" }}
         >
           Ancient citadels, misty tea hills, wild elephants and empty
@@ -111,6 +111,15 @@ const Hero = () => {
           itineraries across Sri Lanka, from your first enquiry to the
           moment you land back home.
         </p>
+        <div
+          className="animate-fade-up mt-6 hidden sm:block text-base md:text-lg text-white/85 leading-relaxed"
+          style={{ animationDelay: "240ms" }}
+        >
+          <span className="block">Ancient citadels, misty tea hills, wild elephants and empty beaches —</span>
+          <span className="block">Serendib Trails builds private, expert-guided itineraries</span>
+          <span className="block">across Sri Lanka, from your first enquiry to the</span>
+          <span className="block">moment you land back home.</span>
+        </div>
 
         <div
           className="animate-fade-up mt-9 flex flex-wrap items-center gap-4"
