@@ -20,7 +20,7 @@ const About = () => {
               alt="A photo collage celebrating Sri Lanka — elephants, Sigiriya, Ceylon tea and island culture"
               className="h-auto w-full rounded-3xl shadow-soft"
               loading="lazy"
-              width="720"
+              width="800"
               height="1280"
             />
 
