@@ -96,31 +96,6 @@ const Footer = () => {
         </div>
         <div className="absolute inset-0 bg-ink/70" aria-hidden="true" />
 
-        <svg
-          className="pointer-events-none absolute -right-16 top-0 h-[640px] w-auto text-white/[0.06] md:-right-6 lg:right-10"
-          viewBox="0 0 200 340"
-          fill="none"
-          aria-hidden="true"
-        >
-          <path
-            d="M78 4
-              C100 2 120 10 128 24
-              C148 40 168 65 165 95
-              C178 120 176 150 168 165
-              C176 185 168 210 150 232
-              C158 255 145 278 122 298
-              C112 312 100 312 92 300
-              C75 282 68 258 74 235
-              C55 225 45 205 52 182
-              C36 172 30 150 42 132
-              C28 115 30 90 46 75
-              C36 60 38 40 55 26
-              C62 14 70 6 78 4 Z"
-            stroke="currentColor"
-            strokeWidth="2"
-          />
-        </svg>
-
         <div className="relative mx-auto max-w-7xl px-5 md:px-10 py-14 md:py-16 grid md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
           <div className="lg:col-span-1">
             <Logo variant="light" />
