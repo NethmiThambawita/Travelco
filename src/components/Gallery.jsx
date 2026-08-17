@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import wawatennaImg from "../assets/images/about-wawatenna.jpg";
 import pidurangalaImg from "../assets/images/gallery-pidurangala.jpg";
 import fortImg from "../assets/images/fort.jpeg";
@@ -59,8 +60,79 @@ const DestinationCard = ({ d }) => (
   </div>
 );
 
+const ArrowButton = ({ direction, onClick }) => (
+  <button
+    type="button"
+    onClick={onClick}
+    aria-label={direction === "prev" ? "Previous destinations" : "Next destinations"}
+    className="absolute top-1/2 z-20 -translate-y-1/2 grid h-10 w-10 place-items-center rounded-full bg-white/90 text-ink shadow-soft ring-1 ring-ink/10 backdrop-blur transition-colors hover:bg-white active:scale-95 md:h-11 md:w-11"
+    style={direction === "prev" ? { left: "0.5rem" } : { right: "0.5rem" }}
+  >
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d={direction === "prev" ? "M15 6l-6 6 6 6" : "M9 6l6 6-6 6"}
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  </button>
+);
+
 const Gallery = () => {
   const track = [...destinations, ...destinations];
+  const trackRef = useRef(null);
+  const pausedRef = useRef(false);
+  const resumeTimeoutRef = useRef(null);
+  const [hintVisible, setHintVisible] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setHintVisible(false), 5000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let frameId;
+    const step = () => {
+      if (!pausedRef.current) {
+        const halfWidth = el.scrollWidth / 2;
+        el.scrollLeft += 0.6;
+        if (el.scrollLeft >= halfWidth) {
+          el.scrollLeft -= halfWidth;
+        }
+      }
+      frameId = requestAnimationFrame(step);
+    };
+    frameId = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(frameId);
+  }, []);
+
+  const pauseAutoplay = () => {
+    pausedRef.current = true;
+    setHintVisible(false);
+    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+  };
+
+  const resumeAutoplaySoon = (delay = 2500) => {
+    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+    resumeTimeoutRef.current = setTimeout(() => {
+      pausedRef.current = false;
+    }, delay);
+  };
+
+  const scrollByCard = (direction) => {
+    const el = trackRef.current;
+    if (!el) return;
+    pauseAutoplay();
+    const amount = el.clientWidth * 0.8 * (direction === "prev" ? -1 : 1);
+    el.scrollBy({ left: amount, behavior: "smooth" });
+    resumeAutoplaySoon(3000);
+  };
 
   return (
     <section id="gallery" className="py-20 md:py-28 overflow-hidden">
@@ -79,7 +151,29 @@ const Gallery = () => {
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-white to-transparent" aria-hidden="true" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-white to-transparent" aria-hidden="true" />
 
-        <div className="animate-marquee flex w-max gap-5 px-5 md:px-10">
+        <ArrowButton direction="prev" onClick={() => scrollByCard("prev")} />
+        <ArrowButton direction="next" onClick={() => scrollByCard("next")} />
+
+        <div
+          aria-hidden="true"
+          className={`pointer-events-none absolute inset-x-0 bottom-6 z-20 flex justify-center transition-opacity duration-700 ${
+            hintVisible ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <div className="flex items-center gap-2 rounded-full bg-ink/80 px-4 py-2 text-xs font-medium text-white shadow-soft backdrop-blur">
+            <span className="animate-swipe-hint inline-block text-base">👆</span>
+            <span>Swipe to explore</span>
+          </div>
+        </div>
+
+        <div
+          ref={trackRef}
+          onMouseEnter={pauseAutoplay}
+          onMouseLeave={() => resumeAutoplaySoon(0)}
+          onTouchStart={pauseAutoplay}
+          onTouchEnd={() => resumeAutoplaySoon()}
+          className="flex gap-5 overflow-x-auto scroll-smooth px-5 md:px-10 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
           {track.map((d, i) => (
             <DestinationCard key={`${d.title}-${i}`} d={d} />
           ))}
